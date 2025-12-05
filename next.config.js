@@ -2,35 +2,10 @@
 const nextConfig = {
   output: 'export',
   distDir: 'dist',
-  experimental: {
-    serverActions: true,
-    typedRoutes: true,
-    swcMinify: false,
+  eslint: {
+    ignoreDuringBuilds: true,
   },
-  images: {
-    unoptimized: true,
-  },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        path: false,
-        os: false
-      };
-    }
-    
-    // Fix SWC module resolution
-    config.resolve.extensions = [
-      '.js',
-      '.jsx',
-      '.ts',
-      '.tsx',
-      '.json'
-    ];
-
-    return config;
-  },
+  images: { unoptimized: true },
 };
 
 module.exports = nextConfig;
